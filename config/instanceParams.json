@@ -1,0 +1,16 @@
+[
+    {
+        "ImageId": "ami-0a3a9dd4bc68bae02",
+        "InstanceType": "t3.micro",
+        "KeyName": "TestKey",
+        "MinCount": 1,
+        "MaxCount": 1
+    },
+    {
+        "ImageId": "ami-0a3a9dd4bc68bae02",
+        "InstanceType": "t3.micro",
+        "KeyName": "TestKey",
+        "MinCount": 1,
+        "MaxCount": 1
+    }
+]
