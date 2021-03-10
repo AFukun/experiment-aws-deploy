@@ -11,8 +11,8 @@ const params = {
     ],
     Parameters: {
         commands: [
-            "runuser -l ec2-user -c 'echo hello'",
-            "runuser -l ec2-user -c 'mkdir test2'"
+            "runuser -l ec2-user -c 'echo hello >> text.txt'",
+            "runuser -l ec2-user -c 'mkdir badass'"
         ]
     }
 };
