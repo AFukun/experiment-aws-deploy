@@ -2,6 +2,9 @@
     "name": "experiment-aws-deploy",
     "version": "1.0.0",
     "main": "deploy.js",
+    "scripts": {
+        "start": "node deploy"
+    },
     "dependencies": {
         "@aws-sdk/client-ec2": "^3.8.0",
         "@aws-sdk/client-ssm": "^3.8.0"
