@@ -1,49 +1,29 @@
-// Import required AWS SDK clients and commands for Node.js
-const {
-  EC2Client,
-  CreateTagsCommand,
-  RunInstancesCommand
-} = require("@aws-sdk/client-ec2");
+const { EC2 } = require("@aws-sdk/client-ec2");
 
-// Set the AWS region
+const { getInstanceParams } = require("./services/fileServices");
+
 const REGION = "ap-southeast-1"; //e.g. "us-east-1"
 
-// Set the parameters
-const instanceParams = {
-  ImageId: "ami-0d06583a13678c938", //AMI_ID
-  InstanceType: "t2.micro",
-  KeyName: "TestKey", //KEY_PAIR_NAME
-  MinCount: 1,
-  MaxCount: 1,
-};
+const ec2 = new EC2({ region: REGION });
 
-// Create EC2 service object
-const ec2client = new EC2Client({ region: REGION });
+const instanceParams = getInstanceParams();
 
-const run = async () => {
+const deploy = async () => {
+  let total = 0;
   try {
-    const data = await ec2client.send(new RunInstancesCommand(instanceParams));
-    console.log(data.Instances[0].InstanceId);
-    const instanceId = data.Instances[0].InstanceId;
-    console.log("Created instance", instanceId);
-    // Add tags to the instance
-    const tagParams = {
-      Resources: [instanceId],
-      Tags: [
-        {
-          Key: "Name",
-          Value: "Test",
-        },
-      ],
-    };
-    try {
-      const data = await ec2client.send(new CreateTagsCommand(tagParams));
-      console.log("Instance tagged");
-    } catch (err) {
-      console.log("Error", err);
+    for (const param of instanceParams) {
+      const response = await ec2.runInstances(param);
+      response.Instances.forEach((instance) => {
+        console.log(
+          instance.InstanceType + " " + instance.InstanceId + " created"
+        );
+      });
+      total += response.Instances.length;
     }
   } catch (err) {
-    console.log("Error", err);
+    console.log(err);
   }
+  console.log("Total " + total + " instances launched");
 };
-run();
+
+deploy();

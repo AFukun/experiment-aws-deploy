@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const path = require('../config/path')
+const path = require("../config/path");
 
 /**
  * get the luanch parameters of instances
@@ -10,7 +10,9 @@ function getInstanceParams() {
     console.log(`${__filename}: getInstanceParams`)
     const instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'))
     return instanceParams
+
 }
+
 /**
  * get the Ids of luanched instances
  * @returns {string[]} InstancesIds
@@ -33,7 +35,7 @@ function writeInstanceIdAndPublicId(data){
 }
 
 module.exports = {
-    getInstanceParams,
-    getInstanceIds,
-    writeInstanceIdAndPublicId
-}
+  getInstanceParams,
+  getInstanceIds,
+  writeInstanceIdAndPublicId,
+};

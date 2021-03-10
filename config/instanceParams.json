@@ -1,9 +1,16 @@
 [
-    {
-        "ImageId": "ami-0d06583a13678c938",
-        "InstanceType": "t2.micro",
-        "KeyName": "TestKey",
-        "MinCount": 1,
-        "MaxCount": 1
-    }
+  {
+    "ImageId": "ami-0d06583a13678c938",
+    "InstanceType": "t2.micro",
+    "KeyName": "TestKey",
+    "MinCount": 1,
+    "MaxCount": 2
+  },
+  {
+    "ImageId": "ami-0d06583a13678c938",
+    "InstanceType": "t2.micro",
+    "KeyName": "TestKey",
+    "MinCount": 1,
+    "MaxCount": 2
+  }
 ]
