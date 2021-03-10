@@ -6,29 +6,19 @@ const path = require('../config/path')
  * get the luanch parameters of instances
  * @returns {JSON} instanceParams
  */
-async function getInstanceParams() {
+function getInstanceParams() {
     console.log(`${__filename}: getInstanceParams`)
-    const instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8', async (err, data) => {
-        if (err) {
-            console.log(err);
-        }
-        return data;
-    }))
+    const instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'))
     return instanceParams
 }
-
 /**
  * get the Ids of luanched instances
  * @returns {string[]} InstancesIds
  */
-async function getInstanceIds(){
+function getInstanceIds(){
     console.log(`${__filename}: getInstanceIds`)
-    const instanceIds = JSON.parse(fs.readFileSync(path.instanceIds, 'utf-8', async(err, data)=>{
-        if (err) {
-            console.log(err);
-        }
-        return data;
-    }))
+    const instanceIds = JSON.parse(fs.readFileSync(path.instanceIds, 'utf-8'))
+    console.log(`The number of loaded instances id: ${instanceIds.InstanceIds.length}`)
     return instanceIds.InstanceIds
 }
 
@@ -37,13 +27,9 @@ async function getInstanceIds(){
     @property {string} id
     @property {string} publicIp
 */
-async function writeInstanceIdAndPublicId(data){
+function writeInstanceIdAndPublicId(data){
     console.log(`${__filename}: writeInstanceIdAndPublicId`)
-    fs.writeFileSync(path.instancePublicIp, JSON.stringify(data), async(err) => {
-        if(err){
-          console.log(err)
-        }
-    })
+    fs.writeFileSync(path.instancePublicIp, JSON.stringify(data))
 }
 
 module.exports = {
