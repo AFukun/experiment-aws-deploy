@@ -6,12 +6,12 @@ const {
 } = require("@aws-sdk/client-ec2");
 
 // Set the AWS region
-const REGION = "ap-east-1"; //e.g. "us-east-1"
+const REGION = "ap-southeast-1"; //e.g. "us-east-1"
 
 // Set the parameters
 const instanceParams = {
-  ImageId: "ami-0a3a9dd4bc68bae02", //AMI_ID
-  InstanceType: "t3.micro",
+  ImageId: "ami-0d06583a13678c938", //AMI_ID
+  InstanceType: "t2.micro",
   KeyName: "TestKey", //KEY_PAIR_NAME
   MinCount: 1,
   MaxCount: 1,
@@ -32,7 +32,7 @@ const run = async () => {
       Tags: [
         {
           Key: "Name",
-          Value: "Node0",
+          Value: "Test",
         },
       ],
     };

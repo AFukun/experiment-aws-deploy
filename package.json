@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "main": "deploy.js",
     "dependencies": {
-        "@aws-sdk/client-ec2": "^3.8.0"
+        "@aws-sdk/client-ec2": "^3.8.0",
+        "@aws-sdk/client-ssm": "^3.8.0"
     },
     "devDependencies": {
         "@types/node": "^14.0.23",
