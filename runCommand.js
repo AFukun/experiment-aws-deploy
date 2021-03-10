@@ -10,7 +10,7 @@ const run = async () => {
 
     const params = {
         DocumentName: "AWS-RunShellScript",
-        InstanceIds: await fileService.getInstanceIds(),
+        InstanceIds: fileService.getInstanceIds(),
         Parameters: {
             commands: [
                 "runuser -l ec2-user -c 'echo hello'",
