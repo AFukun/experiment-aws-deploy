@@ -29,11 +29,7 @@ function getInstanceIds(){
 */
 function writeInstanceIdAndPublicId(data){
     console.log(`${__filename}: writeInstanceIdAndPublicId`)
-    fs.writeFileSync(path.instancePublicIp, JSON.stringify(data), (err) => {
-        if(err){
-          console.log(err)
-        }
-    })
+    fs.writeFileSync(path.instancePublicIp, JSON.stringify(data))
 }
 
 module.exports = {
