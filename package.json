@@ -1,16 +1,16 @@
 {
-    "name": "experiment-aws-deploy",
-    "version": "1.0.0",
-    "main": "deploy.js",
-    "scripts": {
-        "start": "node deploy"
-    },
-    "dependencies": {
-        "@aws-sdk/client-ec2": "^3.8.0",
-        "@aws-sdk/client-ssm": "^3.8.0"
-    },
-    "devDependencies": {
-        "@types/node": "^14.0.23",
-        "typescript": "^4.0.2"
-    }
+  "name": "experiment-aws-deploy",
+  "version": "1.0.0",
+  "main": "deploy.js",
+  "scripts": {
+    "start": "node deploy"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ec2": "^3.8.0",
+    "@aws-sdk/client-ssm": "^3.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.23",
+    "typescript": "^4.0.2"
+  }
 }

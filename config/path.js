@@ -1,15 +1,15 @@
 // parameters of instances
-const instanceParams = `${process.cwd()}/config/instanceParams.json`
+const instanceParams = `${process.cwd()}/config/instanceParams.json`;
 
 // Ids returned after luanching the instances
-const instanceIds = `${process.cwd()}/data/instanceIds.json`
+const instanceIds = `${process.cwd()}/data/instanceIds.json`;
 
 // Ids returned after luanching the instances
-const instancePublicIp = `${process.cwd()}/data/instancePublicIp.json`
-
+const instancePublicIp = `${process.cwd()}/data/instancePublicIp.json`;
 
 module.exports = {
     instanceParams,
     instanceIds,
     instancePublicIp
-}
+};
+
