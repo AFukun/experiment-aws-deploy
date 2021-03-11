@@ -21,8 +21,8 @@ const upload = async () => {
             console.log('Uploading app to server...');
             exec('scp -i ~/.aws/TestKey.pem -r app ec2-user@' + ip + ':~', (err) => {
                 if (err) throw err;
+                console.log('Upload success');
             });
-            console.log('Upload success');
         }
     } catch (err) {
         console.log(err);

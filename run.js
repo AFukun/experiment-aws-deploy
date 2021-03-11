@@ -11,7 +11,7 @@ const run = async () => {
         DocumentName: 'AWS-RunShellScript',
         InstanceIds: fileService.getInstanceIds(),
         Parameters: {
-            commands: ["runuser -l ec2-user -c 'echo hell'"]
+            commands: ["runuser -l ec2-user -c 'echo hello world! >> output.txt'"]
         }
     };
     ssm.sendCommand(params, async (err) => {
