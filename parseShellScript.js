@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const readline = require('readline');
 
-function parseShellScript(file) {
+async function parseShellScript(file) {
     const lineReader = readline.createInterface({
         input: fs.createReadStream(file)
     });
