@@ -32,16 +32,26 @@ function getInstanceIds() {
     @property {string} id
     @property {string} publicIp
 */
-function writeInstanceIdAndPublicIP(data) {
-    fs.writeFileSync(path.instancePublicIp, JSON.stringify(data));
+async function writeInstanceIdAndPublicIP(data) {
+    fs.stat(`${process.cwd()}/data/`, (err, stat) => {
+        if (err) {
+            fs.mkdirSync(`${process.cwd()}/data/`, { recursive: true })
+        }
+        fs.writeFileSync(path.instancePublicIp, JSON.stringify(data));
+    })
 }
 
 /**
  * @param {JSON} data
  * @property {string[]} InstanceIds
  */
-function writeInstanceIds(data) {
-    fs.writeFileSync(path.instanceIds, JSON.stringify(data));
+async function writeInstanceIds(data) {
+    fs.stat(`${process.cwd()}/data/`, (err, stat) => {
+        if (err) {
+            fs.mkdirSync(`${process.cwd()}/data/`, { recursive: true })
+        }
+        fs.writeFileSync(path.instanceIds, JSON.stringify(data));
+    })
 }
 
 module.exports = {
