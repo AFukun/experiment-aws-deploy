@@ -7,7 +7,6 @@ const path = require('../config/path');
  * @returns {JSON} instanceParams
  */
 function getInstanceParams() {
-    console.log(`${__filename}: getInstanceParams`);
     const instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'));
     return instanceParams;
 }
@@ -17,7 +16,6 @@ function getInstanceParams() {
  * @returns {string[]} InstancesIds
  */
 function getInstanceIds() {
-    console.log(`${__filename}: getInstanceIds`);
     const instanceIds = JSON.parse(fs.readFileSync(path.instanceIds, 'utf-8'));
     console.log(`The number of loaded instances id: ${instanceIds.InstanceIds.length}`);
     return instanceIds.InstanceIds;
@@ -29,12 +27,20 @@ function getInstanceIds() {
     @property {string} publicIp
 */
 function writeInstanceIdAndPublicId(data) {
-    console.log(`${__filename}: writeInstanceIdAndPublicId`);
     fs.writeFileSync(path.instancePublicIp, JSON.stringify(data));
+}
+
+/**
+ * @param {JSON} data
+ * @property {string[]} InstanceIds
+ */
+function writeInstanceIds(data){
+    fs.writeFileSync(path.instanceIds, JSON.stringify(data))
 }
 
 module.exports = {
     getInstanceParams,
     getInstanceIds,
-    writeInstanceIdAndPublicId
+    writeInstanceIdAndPublicId,
+    writeInstanceIds
 };
