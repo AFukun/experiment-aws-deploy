@@ -14,10 +14,9 @@ const run = async () => {
             commands: ["runuser -l ec2-user -c 'echo hello'", "runuser -l ec2-user -c 'mkdir test2'"]
         }
     };
-    ssm.sendCommand(params, async (err, data) => {
+    ssm.sendCommand(params, async (err, response) => {
         if (err) console.log(err, err.stack);
-        // an error occurred
-        else console.log(data.Command.InstanceIds); // successful response
+        else console.log(response); 
     });
 };
 
