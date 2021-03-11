@@ -37,4 +37,6 @@ const describeInstances = async () => {
     });
 };
 
-module.exports = 'describeInstances';
+module.exports = {
+    describeInstances
+};

@@ -27,6 +27,15 @@ function getInstanceIds() {
     return instanceIds.InstanceIds;
 }
 
+function getInstanceIps() {
+    const instanceIdAndPublicIp = JSON.parse(fs.readFileSync(path.instancePublicIp, 'utf-8'));
+    let instanceIps = [];
+    for (let data of instanceIdAndPublicIp) {
+        instanceIps.push(data.publicIp);
+    }
+    return instanceIps;
+}
+
 /** 
     @param {JSON[]} data
     @property {string} id
@@ -47,6 +56,7 @@ function writeInstanceIds(data) {
 module.exports = {
     getInstanceParams,
     getInstanceIds,
+    getInstanceIps,
     writeInstanceIdAndPublicIP,
     writeInstanceIds
 };

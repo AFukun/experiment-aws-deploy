@@ -11,12 +11,12 @@ const run = async () => {
         DocumentName: 'AWS-RunShellScript',
         InstanceIds: fileService.getInstanceIds(),
         Parameters: {
-            commands: ["runuser -l ec2-user -c 'echo hello'", "runuser -l ec2-user -c 'mkdir test2'"]
+            commands: ["runuser -l ec2-user -c 'echo hell'"]
         }
     };
-    ssm.sendCommand(params, async (err, response) => {
+    ssm.sendCommand(params, async (err) => {
         if (err) console.log(err, err.stack);
-        else console.log(response); 
+        else console.log("Commands Excuted");
     });
 };
 
