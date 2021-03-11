@@ -26,7 +26,7 @@ function getInstanceIds() {
     @property {string} id
     @property {string} publicIp
 */
-function writeInstanceIdAndPublicId(data) {
+function writeInstanceIdAndPublicIP(data) {
     fs.writeFileSync(path.instancePublicIp, JSON.stringify(data));
 }
 
@@ -41,6 +41,6 @@ function writeInstanceIds(data){
 module.exports = {
     getInstanceParams,
     getInstanceIds,
-    writeInstanceIdAndPublicId,
+    writeInstanceIdAndPublicIP,
     writeInstanceIds
 };

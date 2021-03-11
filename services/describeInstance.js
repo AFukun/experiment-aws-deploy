@@ -21,7 +21,7 @@ const run = async () => {
                     publicIp: instance.Instances[0].PublicIpAddress ? instance.Instances[0].PublicIpAddress : null
                 });
             }
-            fileService.writeInstanceIdAndPublicId(instancesIp);
+            fileService.writeInstanceIdAndPublicIP(instancesIp);
         }
     });
 };
