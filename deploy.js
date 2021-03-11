@@ -2,6 +2,8 @@ const { EC2 } = require('@aws-sdk/client-ec2');
 
 const { getInstanceParams, writeInstanceIds } = require('./services/fileServices');
 
+const fs = require('fs');
+
 const REGION = 'ap-southeast-1'; //e.g. "us-east-1"
 
 const ec2 = new EC2({ region: REGION });
@@ -20,6 +22,9 @@ const deploy = async () => {
         }
     } catch (err) {
         console.log(err);
+    }
+    if (!fs.existsSync('data')) {
+        fs.mkdirSync('data');
     }
     writeInstanceIds({ InstanceIds: Ids });
     console.log('Total ' + Ids.length + ' instances launched');
