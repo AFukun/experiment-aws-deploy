@@ -1,16 +1,18 @@
-/*
- * Todos
- * [*] check IP before upload
- * [*] get IP of all instances
- * [*] upload use exec
- * [*] handle errors
- */
-
 const { exec } = require('child_process');
 
 const { describeInstances } = require('./services/describeInstance');
 
 const { getInstanceIps } = require('./services/fileServices');
+
+const scp = async (ip) => {
+    console.log('Uploading app to ec2-user@' + ip);
+    return new Promise((resolve, reject) => {
+        exec('scp -i ~/.aws/TestKey.pem -r app ec2-user@' + ip + ':~', (err) => {
+            if (err) reject(err);
+            resolve('Upload success');
+        });
+    });
+};
 
 const upload = async () => {
     try {
@@ -18,11 +20,8 @@ const upload = async () => {
         console.log(response);
         const instanceIps = getInstanceIps();
         for (const ip of instanceIps) {
-            console.log('Uploading app to server...');
-            exec('scp -i ~/.aws/TestKey.pem -r app ec2-user@' + ip + ':~', (err) => {
-                if (err) throw err;
-                console.log('Upload success');
-            });
+            const response = await scp(ip);
+            console.log(response);
         }
     } catch (err) {
         console.log(err);

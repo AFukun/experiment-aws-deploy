@@ -16,18 +16,22 @@ const describeInstances = async () => {
                 reject(err);
             } else {
                 let instancesIp = [];
-                for (const instance of data.Reservations[0].Instances) {
-                    if (instance.PublicIpAddress) {
-                        instancesIp.push({
-                            id: instance.InstanceId,
-                            publicIp: instance.PublicIpAddress
-                        });
-                    } else {
-                        reject(
-                            new Error(
-                                'Instance ' + instance.InstanceId + ' initializing, wait until it is full initialized'
-                            )
-                        );
+                for (const reservation of data.Reservations) {
+                    for (const instance of reservation.Instances) {
+                        if (instance.State.Name === 'running') {
+                            instancesIp.push({
+                                id: instance.InstanceId,
+                                publicIp: instance.PublicIpAddress
+                            });
+                        } else {
+                            reject(
+                                new Error(
+                                    'Instance ' +
+                                        instance.InstanceId +
+                                        ' initializing, wait until it is full initialized'
+                                )
+                            );
+                        }
                     }
                 }
                 fileService.writeInstanceIdAndPublicIP(instancesIp);
