@@ -7,7 +7,13 @@ const path = require('../config/path');
  * @returns {JSON} instanceParams
  */
 function getInstanceParams() {
-    const instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'));
+    console.log(`${__filename}: getInstanceParams`);
+    let instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'));
+    instanceParams.forEach((param) => {
+        if (param.UserData) {
+            param.UserData = Buffer.from(param.UserData).toString('base64');
+        }
+    });
     return instanceParams;
 }
 
@@ -34,8 +40,8 @@ function writeInstanceIdAndPublicIP(data) {
  * @param {JSON} data
  * @property {string[]} InstanceIds
  */
-function writeInstanceIds(data){
-    fs.writeFileSync(path.instanceIds, JSON.stringify(data))
+function writeInstanceIds(data) {
+    fs.writeFileSync(path.instanceIds, JSON.stringify(data));
 }
 
 module.exports = {
