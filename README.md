@@ -13,11 +13,24 @@ node --version
 npm --version
 ```
 
-## 本地测试
+## 本地部署
+
+在AWS上部署一定数量的机器：
 
 ```shell
-npm intall
-npm start
+node deploy
+```
+
+将app文件夹上传到机器上：
+
+```shell
+node upload
+```
+
+将运行指令：
+
+```shell
+node run
 ```
 
 ## 本地开发
