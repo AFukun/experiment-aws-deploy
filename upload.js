@@ -7,7 +7,7 @@ const { getInstanceIps } = require('./services/fileServices');
 const scp = async (ip) => {
     console.log('Uploading app to ec2-user@' + ip);
     return new Promise((resolve, reject) => {
-        exec('scp -i ~/.aws/TestKey.pem -r app ec2-user@' + ip + ':~', (err) => {
+        exec('scp -o StrictHostKeyChecking=no -i ~/.aws/TestKey.pem -r app ec2-user@' + ip + ':~', (err) => {
             if (err) reject(err);
             resolve('Upload success');
         });
