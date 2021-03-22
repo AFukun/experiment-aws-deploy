@@ -7,7 +7,7 @@ const path = require('../config/path');
  * @returns {JSON} instanceParams
  */
 function getInstanceParams() {
-    let instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'));
+    let instanceParams = JSON.parse(fs.readFileSync(`${process.cwd()}/config/instanceParams.json`, 'utf-8'));
     instanceParams.forEach((param) => {
         if (param.UserData) {
             param.UserData = Buffer.from(param.UserData).toString('base64');
@@ -21,7 +21,7 @@ function getInstanceParams() {
  * @returns {string[]} InstancesIds
  */
 function getInstanceIds() {
-    const instanceIds = JSON.parse(fs.readFileSync(path.instanceIds, 'utf-8'));
+    const instanceIds = JSON.parse(fs.readFileSync(`${process.cwd()}/data/instanceIds.json`, 'utf-8'));
     console.log(`The number of loaded instances id: ${instanceIds.InstanceIds.length}`);
     return instanceIds.InstanceIds;
 }
@@ -41,7 +41,7 @@ function getInstanceIps() {
     @property {string} publicIp
 */
 function writeInstanceIdAndPublicIP(data) {
-    fs.writeFileSync(path.instancePublicIp, JSON.stringify(data));
+    fs.writeFileSync(`${process.cwd()}/data/instancePublicIp.json`, JSON.stringify(data));
 }
 
 /**
@@ -49,7 +49,7 @@ function writeInstanceIdAndPublicIP(data) {
  * @property {string[]} InstanceIds
  */
 function writeInstanceIds(data) {
-    fs.writeFileSync(path.instanceIds, JSON.stringify(data));
+    fs.writeFileSync(`${process.cwd()}/data/instanceIds.json`, JSON.stringify(data));
 }
 
 module.exports = {
