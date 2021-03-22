@@ -7,7 +7,6 @@ const path = require('../config/path');
  * @returns {JSON} instanceParams
  */
 function getInstanceParams() {
-    console.log(`${__filename}: getInstanceParams`);
     let instanceParams = JSON.parse(fs.readFileSync(path.instanceParams, 'utf-8'));
     instanceParams.forEach((param) => {
         if (param.UserData) {
