@@ -9,9 +9,8 @@ const path = require('../config/path');
 function getInstanceParams() {
     let instanceParams = JSON.parse(fs.readFileSync(`${process.cwd()}/config/instanceParams.json`, 'utf-8'));
     instanceParams.forEach((param) => {
-        if (param.UserData) {
-            param.UserData = Buffer.from(param.UserData).toString('base64');
-        }
+        // install SSM to allow the instances execute the specific commands
+        param.UserData = "sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm"
     });
     return instanceParams;
 }
