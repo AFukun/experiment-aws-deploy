@@ -12,7 +12,7 @@ async function parseShellScript(file) {
         lineReader
             .on('line', (line) => {
                 if (line.charAt(0) !== '#') {
-                    commands.push(line);
+                    commands.push("runuser -l ec2-user -c '" + line + "'");
                 }
             })
             .on('close', () => {

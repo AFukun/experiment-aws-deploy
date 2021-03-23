@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-const path = require('../config/path');
-
 /**
  * get the luanch parameters of instances
  * @returns {JSON} instanceParams
@@ -10,7 +8,9 @@ function getInstanceParams() {
     let instanceParams = JSON.parse(fs.readFileSync(`${process.cwd()}/config/instanceParams.json`, 'utf-8'));
     instanceParams.forEach((param) => {
         // install SSM to allow the instances execute the specific commands
-        param.UserData = "sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm"
+        param.UserData = Buffer.from(
+            'sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm'
+        ).toString('base64');
     });
     return instanceParams;
 }
@@ -21,12 +21,11 @@ function getInstanceParams() {
  */
 function getInstanceIds() {
     const instanceIds = JSON.parse(fs.readFileSync(`${process.cwd()}/data/instanceIds.json`, 'utf-8'));
-    console.log(`The number of loaded instances id: ${instanceIds.InstanceIds.length}`);
     return instanceIds.InstanceIds;
 }
 
 function getInstanceIps() {
-    const instanceIdAndPublicIp = JSON.parse(fs.readFileSync(path.instancePublicIp, 'utf-8'));
+    const instanceIdAndPublicIp = JSON.parse(fs.readFileSync(`${process.cwd()}/data/instancePublicIp.json`, 'utf-8'));
     let instanceIps = [];
     for (let data of instanceIdAndPublicIp) {
         instanceIps.push(data.publicIp);

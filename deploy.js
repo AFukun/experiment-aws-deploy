@@ -4,7 +4,7 @@ const { getInstanceParams, writeInstanceIds } = require('./services/fileServices
 
 const fs = require('fs');
 
-const REGION = 'ap-southeast-1'; //e.g. "us-east-1"
+const REGION = 'ap-southeast-1';
 
 const ec2 = new EC2({ region: REGION });
 
@@ -14,6 +14,7 @@ const deploy = async () => {
     let Ids = [];
     try {
         for (const param of instanceParams) {
+            console.log('Creating instances...');
             const response = await ec2.runInstances(param);
             response.Instances.forEach((instance) => {
                 Ids.push(instance.InstanceId);

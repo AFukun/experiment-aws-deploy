@@ -6,17 +6,20 @@ const ssm = new SSM({ region: REGION });
 
 const fileService = require('./services/fileServices');
 
+const { parseShellScript } = require('./services/parseShellScript');
+
 const run = async () => {
+    const commands = await parseShellScript('./config/run.sh');
     const params = {
         DocumentName: 'AWS-RunShellScript',
         InstanceIds: fileService.getInstanceIds(),
         Parameters: {
-            commands: ["runuser -l ec2-user -c 'echo hello world! >> output.txt'"]
+            commands: commands
         }
     };
     ssm.sendCommand(params, async (err) => {
         if (err) console.log(err, err.stack);
-        else console.log("Commands Excuted");
+        else console.log('Commands Excuted');
     });
 };
 

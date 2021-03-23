@@ -16,6 +16,7 @@ const describeInstances = async () => {
                 reject(err);
             } else {
                 let instancesIp = [];
+                console.log("no error");
                 for (const reservation of data.Reservations) {
                     for (const instance of reservation.Instances) {
                         if (instance.State.Name === 'running') {
