@@ -93,6 +93,10 @@ npm install
 
 ![](https://raw.githubusercontent.com/Amoukk/aws/master/6.png?token=ANFD2ROYPV6X6WVKC4KOOHLALKVMA)
 
+在`~/.aws`中创建credentials文件，将刚刚保存的用户id和私钥按如下方式填写即可
+
+![](https://raw.githubusercontent.com/Amoukk/aws/master/9.png?token=ANFD2RJTPL4L5UTKRCGDGHLALKY5Y)
+
 #### 创建身份（Roles）
 
 在左侧的Access management中进入Roles创建身份，选择EC2
@@ -113,11 +117,7 @@ npm install
 
 ![](https://raw.githubusercontent.com/Amoukk/aws/master/11.png?token=ANFD2RLYCCNUVT33KL3V4MLALK27W)
 
-创建key pair，文件选择`.pem`格式，然后会提示下载该key pair，一定要先保存下来
-
-在`~/.aws`中创建credentials文件，将刚刚保存的用户id和私钥按如下方式填写即可，刚刚保存下来的`.pem`键值对文件也放入这个文件夹中
-
-![](https://raw.githubusercontent.com/Amoukk/aws/master/9.png?token=ANFD2RJTPL4L5UTKRCGDGHLALKY5Y)
+创建key pair，文件选择`.pem`格式，然后会提示下载该key pair，一定要保存到`~/.aws`文件夹中，也就是前面创建Users中所提到的文件夹
 
 ### 项目部署
 
