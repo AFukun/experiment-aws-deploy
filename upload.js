@@ -2,12 +2,13 @@ const { exec } = require('child_process');
 
 const { describeInstances } = require('./services/describeInstance');
 
-const { getInstanceIps } = require('./services/fileServices');
+const { getInstanceIps, getInstanceParams } = require('./services/fileServices');
 
 const scp = async (ip) => {
     console.log('Uploading app to ec2-user@' + ip);
+    const instanceParams = getInstanceParams();
     return new Promise((resolve, reject) => {
-        exec('scp -o StrictHostKeyChecking=no -i ~/.aws/TestKey.pem -r app ec2-user@' + ip + ':~', (err) => {
+        exec(`scp -o StrictHostKeyChecking=no -i ~/.aws/${instanceParams[0].KeyName}.pem -r app ec2-user@${ip}:~`, (err) => {
             if (err) reject(err);
             resolve('Upload success');
         });
