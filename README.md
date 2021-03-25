@@ -1,6 +1,6 @@
 # Experiment AWS Deploy
 
-使用 AWS SDK for JavaScript 部署实验性的区块链系统到 AWS 服务器上
+使用 AWS SDK for JavaScript 部署app到 AWS 服务器上
 
 ## 开发环境
 
