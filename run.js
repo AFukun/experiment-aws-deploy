@@ -17,8 +17,9 @@ const run = async () => {
             commands: commands
         }
     };
-    ssm.sendCommand(params, async (err) => {
-        if (err) console.log(err, err.stack);
+    console.log('Commands Excuting...');
+    ssm.sendCommand(params, (err) => {
+        if (err) console.log(err.message);
         else console.log('Commands Excuted');
     });
 };

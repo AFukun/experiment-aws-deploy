@@ -16,7 +16,6 @@ const describeInstances = async () => {
                 reject(err);
             } else {
                 let instancesIp = [];
-                console.log("no error");
                 for (const reservation of data.Reservations) {
                     for (const instance of reservation.Instances) {
                         if (instance.State.Name === 'running') {
@@ -36,7 +35,7 @@ const describeInstances = async () => {
                     }
                 }
                 fileService.writeInstanceIdAndPublicIP(instancesIp);
-                resolve(instancesIp.length + ' instances IP obtained');
+                resolve();
             }
         });
     });

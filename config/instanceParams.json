@@ -4,7 +4,7 @@
     "InstanceType": "t2.micro",
     "KeyName": "TestKey",
     "MinCount": 1,
-    "MaxCount": 1,
+    "MaxCount": 2,
     "IamInstanceProfile": {
       "Name": "Myself"
     },
